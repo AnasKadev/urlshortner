@@ -22,7 +22,8 @@ public class UrlService {
 
 	public Optional<String> getUrlByShort(String shorturl) {
 		String urlidString = shorturl.substring(13);
-		return urlRepo.findByShortUrl(urlidString);
+		long realurl=Base62.decode(urlidString);
+		return urlRepo.findByShortUrl(realurl);
 	}
 	
 	public String shortenUrl(String longurl) {
